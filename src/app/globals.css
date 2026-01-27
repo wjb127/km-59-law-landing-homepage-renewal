@@ -1,0 +1,115 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ===== 법무법인 성진 디자인 토큰 (Refactoring UI) ===== */
+
+  /* Grey Scale */
+  --color-grey-50: #f7fafc;
+  --color-grey-100: #edf2f7;
+  --color-grey-200: #e2e8f0;
+  --color-grey-300: #cbd5e0;
+  --color-grey-400: #a0aec0;
+  --color-grey-500: #718096;
+  --color-grey-600: #4a5568;
+  --color-grey-700: #2d3748;
+  --color-grey-800: #1a202c;
+  --color-grey-900: #171923;
+
+  /* Primary - Navy (전문성, 신뢰) */
+  --color-primary-50: #e8eef6;
+  --color-primary-100: #c5d4e8;
+  --color-primary-200: #9fb8d9;
+  --color-primary-300: #789cca;
+  --color-primary-400: #5a86be;
+  --color-primary-500: #3d70b2;
+  --color-primary-600: #2d5a8f;
+  --color-primary-700: #1e446c;
+  --color-primary-800: #1a365d;
+  --color-primary-900: #0f1f35;
+
+  /* Accent - Gold (고급스러움) */
+  --color-accent-50: #fef9e7;
+  --color-accent-100: #fcefc3;
+  --color-accent-200: #f9e49b;
+  --color-accent-300: #f5d872;
+  --color-accent-400: #f0ca4d;
+  --color-accent-500: #d69e2e;
+  --color-accent-600: #b7791f;
+  --color-accent-700: #975a16;
+  --color-accent-800: #744210;
+  --color-accent-900: #5f370e;
+
+  /* Border Radius - Professional */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+  /* shadcn default vars */
+  --radius: 0.5rem;
+  --background: var(--color-grey-50);
+  --foreground: var(--color-grey-900);
+  --card: #ffffff;
+  --card-foreground: var(--color-grey-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-grey-900);
+  --primary: var(--color-primary-800);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-grey-100);
+  --secondary-foreground: var(--color-grey-900);
+  --muted: var(--color-grey-100);
+  --muted-foreground: var(--color-grey-500);
+  --accent: var(--color-accent-500);
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: var(--color-grey-200);
+  --input: var(--color-grey-200);
+  --ring: var(--color-primary-500);
+
+  /* Font */
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --font-serif: 'Noto Serif KR', Georgia, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-grey-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-grey-400);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-500);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary-200);
+  color: var(--color-primary-900);
+}
