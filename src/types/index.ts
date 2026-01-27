@@ -8,6 +8,7 @@ export interface Member {
   education: string;
   career: string;
   achievements: string;
+  email?: string;
   displayOrder: number;
   isActive: boolean;
 }
