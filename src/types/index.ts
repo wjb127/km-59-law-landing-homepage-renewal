@@ -91,7 +91,7 @@ export interface StatsSettings {
   years: number;
 }
 
-// rls_inquiries 테이블 타입
+// kmm59_inquiries 테이블 타입
 export interface Inquiry {
   id: string;
   site_id: string;

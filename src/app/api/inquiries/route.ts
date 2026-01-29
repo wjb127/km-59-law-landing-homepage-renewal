@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     const supabase = createAdminClient();
     const { data, error } = await supabase
-      .from('rls_inquiries')
+      .from('kmm59_inquiries')
       .insert({
         site_id: SITE_ID,
         name,
@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit;
 
     let query = supabase
-      .from('rls_inquiries')
+      .from('kmm59_inquiries')
       .select('*', { count: 'exact' })
       .eq('site_id', SITE_ID)
       .order('created_at', { ascending: false })
@@ -109,7 +109,7 @@ export async function PATCH(request: NextRequest) {
     if (status !== undefined) updateData.status = status;
 
     const { data, error } = await supabase
-      .from('rls_inquiries')
+      .from('kmm59_inquiries')
       .update(updateData)
       .eq('id', id)
       .eq('site_id', SITE_ID)
@@ -146,7 +146,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     const { error } = await supabase
-      .from('rls_inquiries')
+      .from('kmm59_inquiries')
       .delete()
       .eq('id', id)
       .eq('site_id', SITE_ID);
