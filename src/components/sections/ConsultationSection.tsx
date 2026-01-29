@@ -6,6 +6,8 @@ import { Send, Phone, Clock, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { SITE_INFO, PRACTICE_AREAS } from '@/lib/constants';
+import { submitInquiry } from '@/lib/api/inquiries';
+import { toast } from 'sonner';
 
 export default function ConsultationSection() {
   const [formData, setFormData] = useState({
@@ -21,8 +23,21 @@ export default function ConsultationSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO: Supabase 연동 시 실제 저장 로직 추가
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const result = await submitInquiry({
+      name: formData.name,
+      phone: formData.phone,
+      message: formData.content,
+      lead_type: 'consultation',
+      custom_fields: {
+        ...(formData.area && { area: formData.area }),
+      },
+    });
+
+    if (!result.success) {
+      toast.error(result.error || '상담 신청에 실패했습니다.');
+      setIsSubmitting(false);
+      return;
+    }
 
     setIsSubmitting(false);
     setIsSubmitted(true);

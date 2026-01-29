@@ -90,3 +90,30 @@ export interface StatsSettings {
   lawyers: number;
   years: number;
 }
+
+// rls_inquiries 테이블 타입
+export interface Inquiry {
+  id: string;
+  site_id: string;
+  is_read: boolean;
+  created_at: string;
+  name: string | null;
+  email: string | null;
+  message: string | null;
+  phone: string | null;
+  parent_phone: string | null;
+  lead_type: string | null;
+  status: string | null;
+  custom_fields: Record<string, unknown> | null;
+  utm_source: string | null;
+}
+
+export interface InquiryCreatePayload {
+  name: string;
+  phone?: string;
+  email?: string;
+  message?: string;
+  lead_type?: string;
+  custom_fields?: Record<string, unknown>;
+  utm_source?: string;
+}
