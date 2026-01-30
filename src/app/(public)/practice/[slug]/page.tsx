@@ -3,7 +3,7 @@
 import { use } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Gavel, Heart, Building2, Briefcase, Car, FileText, CheckCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Gavel, Heart, Building2, Briefcase, Car, FileText, Shield, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PRACTICE_AREAS, CASES, MEMBERS } from '@/lib/constants';
@@ -15,6 +15,7 @@ const iconMap: Record<string, React.ElementType> = {
   Briefcase,
   Car,
   FileText,
+  Shield,
 };
 
 export default function PracticeDetailPage({ params }: { params: Promise<{ slug: string }> }) {

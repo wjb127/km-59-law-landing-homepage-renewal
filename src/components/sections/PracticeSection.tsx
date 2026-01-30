@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Gavel, Heart, Building2, Briefcase, Car, FileText } from 'lucide-react';
+import { ArrowRight, Gavel, Heart, Building2, Briefcase, Car, FileText, Shield } from 'lucide-react';
 import { PRACTICE_AREAS } from '@/lib/constants';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -12,6 +12,7 @@ const iconMap: Record<string, React.ElementType> = {
   Briefcase,
   Car,
   FileText,
+  Shield,
 };
 
 export default function PracticeSection() {

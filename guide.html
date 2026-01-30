@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>법무법인 성진 - 관리자 사용 가이드</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard Variable', -apple-system, sans-serif;
+    color: #1a202c;
+    line-height: 1.8;
+    background: #f7f8fa;
+  }
+
+  @media print {
+    body { background: white; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    section { page-break-inside: avoid; }
+    .container { max-width: 100%; padding: 0 20px; box-shadow: none; }
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    color: white;
+    padding: 60px 48px 48px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+  .header .meta {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+
+  /* Download Button */
+  .download-bar {
+    background: #1a365d;
+    padding: 12px 48px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .download-bar button {
+    background: #d69e2e;
+    color: #1a365d;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .download-bar button:hover { background: #ecc94b; }
+
+  /* Content */
+  .content { padding: 48px; }
+
+  /* TOC */
+  .toc {
+    background: #f0f4f8;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc h2 {
+    font-size: 18px;
+    color: #1a365d;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .toc ol {
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 40px;
+  }
+  .toc li {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .toc a {
+    color: #2d4a7a;
+    text-decoration: none;
+  }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Sections */
+  section { margin-bottom: 48px; }
+  section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a365d;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #d69e2e;
+    margin-bottom: 20px;
+  }
+  section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 20px 0 10px;
+  }
+  p { margin-bottom: 12px; font-size: 14.5px; }
+
+  /* Steps */
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #1a365d;
+    color: #d69e2e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { color: #1a365d; }
+
+  /* Info box */
+  .info-box {
+    background: #ebf4ff;
+    border-left: 4px solid #3182ce;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .warn-box {
+    background: #fffbeb;
+    border-left: 4px solid #d69e2e;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: #1a365d;
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  tr:nth-child(even) td { background: #f7fafc; }
+
+  /* Code */
+  code {
+    background: #edf2f7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'SF Mono', Consolas, monospace;
+  }
+
+  /* Screenshot placeholder */
+  .screenshot {
+    background: #f0f4f8;
+    border: 2px dashed #cbd5e0;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    color: #718096;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  /* URL list */
+  .url-table td:first-child {
+    font-weight: 600;
+    white-space: nowrap;
+    color: #1a365d;
+  }
+
+  /* Footer */
+  .footer {
+    background: #1a365d;
+    color: white;
+    padding: 32px 48px;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- Download bar -->
+<div class="download-bar no-print">
+  <button onclick="window.print()">PDF 다운로드 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>법무법인 성진 관리자 가이드</h1>
+  <p class="subtitle">홈페이지 관리 및 운영 매뉴얼</p>
+  <div class="meta">
+    <span>버전 1.0</span>
+    <span>최종 업데이트: 2026년 1월 30일</span>
+    <span>작성: 개발팀</span>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- TOC -->
+<div class="toc">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#overview">시스템 개요</a></li>
+    <li><a href="#urls">주요 URL 안내</a></li>
+    <li><a href="#login">관리자 로그인</a></li>
+    <li><a href="#dashboard">대시보드 (통계)</a></li>
+    <li><a href="#inquiries">문의 관리</a></li>
+    <li><a href="#profile">프로필 / 비밀번호 변경</a></li>
+    <li><a href="#consultation">상담 신청 폼 (프론트)</a></li>
+    <li><a href="#content">콘텐츠 수정 방법</a></li>
+    <li><a href="#env">환경변수 안내</a></li>
+    <li><a href="#faq">자주 묻는 질문</a></li>
+  </ol>
+</div>
+
+<!-- 1. Overview -->
+<section id="overview">
+  <h2>1. 시스템 개요</h2>
+  <p>법무법인 성진 홈페이지는 <strong>Next.js 16</strong> 프레임워크와 <strong>Supabase</strong> 백엔드로 구축되었으며, <strong>Vercel</strong>에서 호스팅됩니다.</p>
+
+  <h3>기술 스택</h3>
+  <table>
+    <tr><th>구분</th><th>기술</th><th>용도</th></tr>
+    <tr><td>프론트엔드</td><td>Next.js 16 + React 19</td><td>홈페이지 UI</td></tr>
+    <tr><td>스타일링</td><td>Tailwind CSS v4 + shadcn/ui</td><td>디자인 시스템</td></tr>
+    <tr><td>백엔드/DB</td><td>Supabase (PostgreSQL)</td><td>문의 데이터 저장, 인증</td></tr>
+    <tr><td>호스팅</td><td>Vercel</td><td>자동 배포, CDN</td></tr>
+    <tr><td>인증</td><td>Supabase Auth</td><td>관리자 로그인</td></tr>
+  </table>
+
+  <h3>주요 기능</h3>
+  <table>
+    <tr><th>기능</th><th>설명</th></tr>
+    <tr><td>홈페이지</td><td>법인소개, 구성원, 업무분야, 성공사례, 후기, 오시는 길</td></tr>
+    <tr><td>상담 신청</td><td>방문자가 폼 작성 → Supabase DB에 자동 저장</td></tr>
+    <tr><td>관리자 대시보드</td><td>문의 통계, 문의 목록/상세/읽음처리/삭제, 프로필 관리</td></tr>
+  </table>
+</section>
+
+<!-- 2. URLs -->
+<section id="urls" class="page-break">
+  <h2>2. 주요 URL 안내</h2>
+  <table class="url-table">
+    <tr><th>페이지</th><th>URL</th><th>비고</th></tr>
+    <tr><td>홈페이지</td><td><code>https://도메인/</code></td><td>메인 랜딩 페이지</td></tr>
+    <tr><td>법인 소개</td><td><code>/about</code></td><td></td></tr>
+    <tr><td>구성원</td><td><code>/members</code></td><td>변호사 프로필</td></tr>
+    <tr><td>업무분야</td><td><code>/practice</code></td><td>7개 분야</td></tr>
+    <tr><td>성공사례</td><td><code>/cases</code></td><td>8건 등록</td></tr>
+    <tr><td>의뢰인 후기</td><td><code>/reviews</code></td><td>8건 등록</td></tr>
+    <tr><td>상담 신청</td><td><code>/consultation</code></td><td>DB 연동</td></tr>
+    <tr><td>오시는 길</td><td><code>/location</code></td><td>Google Maps</td></tr>
+    <tr><td style="color:#d69e2e; font-weight:700;">관리자 로그인</td><td><code>/admin/login</code></td><td>이메일/비밀번호</td></tr>
+    <tr><td style="color:#d69e2e;">대시보드</td><td><code>/admin/stats</code></td><td>통계 화면</td></tr>
+    <tr><td style="color:#d69e2e;">문의 관리</td><td><code>/admin/inquiries</code></td><td>문의 CRUD</td></tr>
+    <tr><td style="color:#d69e2e;">프로필</td><td><code>/admin/profile</code></td><td>비밀번호 변경</td></tr>
+  </table>
+  <div class="info-box">
+    <strong>참고:</strong> <code>/admin/*</code> URL은 로그인하지 않으면 자동으로 <code>/admin/login</code>으로 이동합니다.
+  </div>
+</section>
+
+<!-- 3. Login -->
+<section id="login">
+  <h2>3. 관리자 로그인</h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <strong>브라우저에서 <code>/admin/login</code> 접속</strong>
+      <p>또는 아무 <code>/admin/*</code> 페이지에 접근하면 자동으로 로그인 페이지로 이동합니다.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <strong>이메일과 비밀번호를 입력</strong>
+      <p>Supabase Authentication에 등록된 관리자 계정 정보를 입력합니다.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <strong>로그인 성공 시 대시보드로 이동</strong>
+      <p>자동으로 <code>/admin/stats</code> (대시보드) 페이지로 이동합니다.</p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>관리자 계정 생성 방법:</strong> Supabase Dashboard → Authentication → Users → "Add user" 버튼으로 이메일/비밀번호 계정을 생성합니다.<br>
+    Supabase URL: <code>https://supabase.com/dashboard</code>
+  </div>
+</section>
+
+<!-- 4. Dashboard -->
+<section id="dashboard" class="page-break">
+  <h2>4. 대시보드 (통계)</h2>
+  <p><code>/admin/stats</code> 페이지에서 문의 현황을 한눈에 확인할 수 있습니다.</p>
+
+  <h3>통계 카드</h3>
+  <table>
+    <tr><th>카드</th><th>설명</th><th>색상</th></tr>
+    <tr><td>전체 문의</td><td>등록된 전체 문의 수</td><td>파란색</td></tr>
+    <tr><td>미확인</td><td>아직 읽지 않은 문의 수</td><td>빨간색</td></tr>
+    <tr><td>확인 완료</td><td>읽음 처리된 문의 수</td><td>초록색</td></tr>
+  </table>
+
+  <h3>최근 문의</h3>
+  <p>가장 최근 5건의 문의가 표시됩니다. 각 문의 왼쪽의 점 색상으로 읽음 여부를 확인할 수 있습니다:</p>
+  <ul style="padding-left: 20px; margin: 8px 0;">
+    <li><span style="color: red;">빨간 점</span> = 미확인</li>
+    <li><span style="color: green;">초록 점</span> = 확인 완료</li>
+  </ul>
+</section>
+
+<!-- 5. Inquiries -->
+<section id="inquiries">
+  <h2>5. 문의 관리</h2>
+  <p><code>/admin/inquiries</code> 페이지에서 모든 문의를 관리할 수 있습니다.</p>
+
+  <h3>5-1. 문의 목록 보기</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <strong>필터링:</strong> 우측 상단 드롭다운에서 "전체", "미확인", "확인 완료" 중 선택하여 필터링할 수 있습니다.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <strong>페이지네이션:</strong> 한 페이지에 15건씩 표시됩니다. 하단의 좌우 화살표로 페이지를 이동합니다.
+    </div>
+  </div>
+
+  <h3>5-2. 문의 상세 보기</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <strong>테이블에서 원하는 문의 행을 클릭</strong>하면 상세 팝업이 열립니다.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <strong>상세 팝업에서 확인 가능한 정보:</strong>
+      <ul style="padding-left: 16px; margin-top: 4px;">
+        <li>이름, 연락처, 이메일</li>
+        <li>유형 (lead_type)</li>
+        <li>추가 정보 (상담 분야, 선호 변호사 등)</li>
+        <li>문의 내용 전체</li>
+        <li>접수 날짜</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-box">
+    <strong>자동 읽음 처리:</strong> 상세 팝업을 열면 해당 문의가 자동으로 "확인" 상태로 변경됩니다.
+  </div>
+
+  <h3>5-3. 읽음/미읽음 토글</h3>
+  <p>테이블 우측의 <strong>눈 아이콘(👁)</strong>을 클릭하면 읽음 ↔ 미읽음 상태를 전환할 수 있습니다.</p>
+
+  <h3>5-4. 문의 삭제</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      테이블 우측의 <strong>휴지통 아이콘(🗑)</strong>을 클릭하거나, 상세 팝업에서 "삭제" 버튼을 클릭합니다.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      확인 팝업에서 <strong>"삭제"</strong>를 클릭하면 영구 삭제됩니다.
+    </div>
+  </div>
+  <div class="warn-box">
+    <strong>주의:</strong> 삭제된 문의는 복구할 수 없습니다. 중요한 문의는 별도로 기록해두세요.
+  </div>
+</section>
+
+<!-- 6. Profile -->
+<section id="profile" class="page-break">
+  <h2>6. 프로필 / 비밀번호 변경</h2>
+  <p><code>/admin/profile</code> 페이지에서 계정 정보를 확인하고 비밀번호를 변경할 수 있습니다.</p>
+
+  <h3>비밀번호 변경 방법</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">좌측 사이드바에서 <strong>"프로필"</strong>을 클릭합니다.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">"비밀번호 변경" 섹션에서 <strong>새 비밀번호</strong>를 입력합니다. (최소 6자)</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content"><strong>비밀번호 확인</strong>에 동일한 비밀번호를 다시 입력합니다.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content"><strong>"비밀번호 변경"</strong> 버튼을 클릭합니다.</div>
+  </div>
+</section>
+
+<!-- 7. Consultation Form -->
+<section id="consultation">
+  <h2>7. 상담 신청 폼 (프론트엔드)</h2>
+  <p>방문자가 홈페이지에서 상담을 신청하면, 데이터가 자동으로 Supabase DB에 저장됩니다.</p>
+
+  <h3>상담 신청 경로 (2곳)</h3>
+  <table>
+    <tr><th>위치</th><th>URL</th><th>설명</th></tr>
+    <tr><td>상담 신청 페이지</td><td><code>/consultation</code></td><td>전체 폼 (이름, 연락처, 이메일, 분야, 변호사, 내용)</td></tr>
+    <tr><td>홈페이지 하단</td><td><code>/</code> (스크롤 하단)</td><td>간편 폼 (이름, 연락처, 분야, 내용)</td></tr>
+  </table>
+
+  <h3>저장되는 데이터</h3>
+  <table>
+    <tr><th>폼 필드</th><th>DB 컬럼</th><th>비고</th></tr>
+    <tr><td>이름</td><td><code>name</code></td><td>필수</td></tr>
+    <tr><td>연락처</td><td><code>phone</code></td><td></td></tr>
+    <tr><td>이메일</td><td><code>email</code></td><td></td></tr>
+    <tr><td>상담 내용</td><td><code>message</code></td><td></td></tr>
+    <tr><td>분야</td><td><code>custom_fields.area</code></td><td>JSONB</td></tr>
+    <tr><td>선호 변호사</td><td><code>custom_fields.preferredMember</code></td><td>JSONB</td></tr>
+    <tr><td>(자동)</td><td><code>lead_type</code></td><td>"consultation"</td></tr>
+    <tr><td>(자동)</td><td><code>site_id</code></td><td>서버에서 자동 설정</td></tr>
+  </table>
+</section>
+
+<!-- 8. Content Edit -->
+<section id="content" class="page-break">
+  <h2>8. 콘텐츠 수정 방법</h2>
+  <p>현재 홈페이지의 콘텐츠(구성원, 업무분야, 성공사례, 후기 등)는 코드 파일에 저장되어 있습니다.</p>
+
+  <h3>수정 파일 위치</h3>
+  <table>
+    <tr><th>콘텐츠</th><th>파일 경로</th><th>변수명</th></tr>
+    <tr><td>사이트 기본 정보</td><td><code>src/lib/constants.ts</code></td><td><code>SITE_INFO</code></td></tr>
+    <tr><td>히어로 문구</td><td><code>src/lib/constants.ts</code></td><td><code>HERO_SETTINGS</code></td></tr>
+    <tr><td>통계 수치</td><td><code>src/lib/constants.ts</code></td><td><code>STATS_SETTINGS</code></td></tr>
+    <tr><td>구성원 (변호사)</td><td><code>src/lib/constants.ts</code></td><td><code>MEMBERS</code></td></tr>
+    <tr><td>업무분야</td><td><code>src/lib/constants.ts</code></td><td><code>PRACTICE_AREAS</code></td></tr>
+    <tr><td>성공사례</td><td><code>src/lib/constants.ts</code></td><td><code>CASES</code></td></tr>
+    <tr><td>의뢰인 후기</td><td><code>src/lib/constants.ts</code></td><td><code>REVIEWS</code></td></tr>
+  </table>
+
+  <div class="info-box">
+    <strong>수정 후 반영 방법:</strong> 파일 수정 → Git push → Vercel에서 자동 배포 (약 1~2분 소요)
+  </div>
+
+  <h3>2차 구현 예정</h3>
+  <p>아래 기능은 추후 관리자 대시보드에서 직접 수정할 수 있도록 DB 연동이 예정되어 있습니다:</p>
+  <ul style="padding-left: 20px;">
+    <li>구성원(Members) CRUD</li>
+    <li>업무분야(Practice Areas) CRUD</li>
+    <li>성공사례(Cases) CRUD</li>
+    <li>의뢰인 후기(Reviews) CRUD</li>
+    <li>사이트 설정(SiteInfo) 수정</li>
+    <li>이미지 업로드 (Supabase Storage)</li>
+  </ul>
+</section>
+
+<!-- 9. Environment -->
+<section id="env">
+  <h2>9. 환경변수 안내</h2>
+  <table>
+    <tr><th>변수명</th><th>용도</th><th>위치</th></tr>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>Supabase 프로젝트 URL</td><td>Vercel + .env.local</td></tr>
+    <tr><td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td><td>Supabase 공개 키 (프론트용)</td><td>Vercel + .env.local</td></tr>
+    <tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>Supabase 서비스 키 (서버용)</td><td>Vercel + .env.local</td></tr>
+    <tr><td><code>NEXT_PUBLIC_SITE_ID</code></td><td>사이트 식별자 (UUID)</td><td>Vercel + .env.local</td></tr>
+    <tr><td><code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code></td><td>Google Maps API 키</td><td>Vercel (선택)</td></tr>
+  </table>
+  <div class="warn-box">
+    <strong>주의:</strong> <code>SUPABASE_SERVICE_ROLE_KEY</code>는 절대 외부에 노출하면 안 됩니다. 이 키는 DB의 모든 데이터에 접근할 수 있는 관리자 권한 키입니다.
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section id="faq" class="page-break">
+  <h2>10. 자주 묻는 질문</h2>
+
+  <h3>Q. 관리자 계정을 추가하려면?</h3>
+  <p>Supabase Dashboard → Authentication → Users → "Add user" 버튼을 클릭하여 새 이메일/비밀번호 계정을 생성합니다.</p>
+
+  <h3>Q. 비밀번호를 잊어버렸다면?</h3>
+  <p>Supabase Dashboard에서 해당 유저를 찾아 비밀번호를 리셋할 수 있습니다. 또는 개발자에게 연락하세요.</p>
+
+  <h3>Q. 문의 알림을 받으려면?</h3>
+  <p>현재는 관리자가 직접 대시보드에서 확인해야 합니다. 이메일/카카오 알림 기능은 2차 개발 시 추가 예정입니다.</p>
+
+  <h3>Q. 홈페이지 텍스트를 수정하고 싶다면?</h3>
+  <p><code>src/lib/constants.ts</code> 파일을 수정하고, GitHub에 push하면 Vercel에서 자동으로 배포됩니다.</p>
+
+  <h3>Q. 변호사 사진을 변경하려면?</h3>
+  <p><code>public/images/members/</code> 폴더에 이미지를 교체하고 push합니다. 파일명은 <code>member1.jpg</code>, <code>member2.jpg</code> 등으로 유지하세요.</p>
+
+  <h3>Q. 도메인을 연결하려면?</h3>
+  <p>Vercel Dashboard → Settings → Domains에서 커스텀 도메인을 추가하고, DNS 설정에서 CNAME 또는 A 레코드를 설정합니다.</p>
+
+  <h3>Q. DB 테이블을 생성하려면?</h3>
+  <p>프로젝트의 <code>supabase/schema.sql</code> 파일 내용을 Supabase SQL Editor에 붙여넣고 실행합니다. 모든 테이블에 <code>kmm59_</code> 접두사가 적용되어 있습니다.</p>
+</section>
+
+</div><!-- /content -->
+
+<!-- Footer -->
+<div class="footer">
+  <p>법무법인 성진 홈페이지 관리자 가이드 v1.0 | 문의: 개발팀</p>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
