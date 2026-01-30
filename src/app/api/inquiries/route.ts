@@ -34,13 +34,13 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Inquiry insert error:', error);
-      return NextResponse.json({ message: '문의 등록에 실패했습니다.' }, { status: 500 });
+      return NextResponse.json({ message: '문의 등록에 실패했습니다.', detail: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data }, { status: 201 });
   } catch (err) {
     console.error('Inquiry POST error:', err);
-    return NextResponse.json({ message: '서버 오류가 발생했습니다.' }, { status: 500 });
+    return NextResponse.json({ message: '서버 오류가 발생했습니다.', detail: String(err) }, { status: 500 });
   }
 }
 
