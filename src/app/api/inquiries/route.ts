@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 
-const SITE_ID = process.env.NEXT_PUBLIC_SITE_ID!;
+const SITE_ID = process.env.NEXT_PUBLIC_SITE_ID!.trim();
 
 // POST - Public inquiry submission
 export async function POST(request: NextRequest) {
