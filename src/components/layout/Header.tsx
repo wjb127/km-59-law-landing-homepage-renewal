@@ -24,7 +24,7 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
+          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-grey-100'
           : 'bg-transparent'
       )}
     >
@@ -32,11 +32,19 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className={cn(
-              'font-bold text-xl md:text-2xl transition-colors duration-300',
-              isScrolled ? 'text-primary-800' : 'text-white'
-            )}>
-              <span className="text-accent-500">법무법인</span> 성진
+            <div
+              className={cn(
+                'font-bold text-xl md:text-2xl transition-colors duration-300',
+                isScrolled ? 'text-primary-800' : 'text-white'
+              )}
+            >
+              <span className={cn(
+                'transition-colors duration-300',
+                isScrolled ? 'text-accent-500' : 'text-accent-400'
+              )}>
+                법무법인
+              </span>{' '}
+              성진
             </div>
           </Link>
 
@@ -65,7 +73,7 @@ export default function Header() {
                   'transition-all duration-300',
                   isScrolled
                     ? 'bg-primary-800 hover:bg-primary-700 text-white'
-                    : 'bg-accent-500 hover:bg-accent-600 text-white'
+                    : 'bg-white/20 hover:bg-white/30 text-white border border-white/30'
                 )}
               >
                 <Phone className="w-4 h-4 mr-2" />
@@ -80,9 +88,15 @@ export default function Header() {
               aria-label="메뉴 열기"
             >
               {isMobileMenuOpen ? (
-                <X className={cn('w-6 h-6', isScrolled ? 'text-grey-800' : 'text-white')} />
+                <X className={cn(
+                  'w-6 h-6 transition-colors duration-300',
+                  isScrolled ? 'text-grey-800' : 'text-white'
+                )} />
               ) : (
-                <Menu className={cn('w-6 h-6', isScrolled ? 'text-grey-800' : 'text-white')} />
+                <Menu className={cn(
+                  'w-6 h-6 transition-colors duration-300',
+                  isScrolled ? 'text-grey-800' : 'text-white'
+                )} />
               )}
             </button>
           </div>

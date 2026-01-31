@@ -1,25 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRight, Star, Quote } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Quote } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { REVIEWS } from '@/lib/constants';
 
 export default function ReviewsSection() {
-  const displayReviews = REVIEWS.slice(0, 4);
-
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-[#f8f9fb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
+          <span className="brand-label text-sm text-primary-300 block mb-3">REVIEWS</span>
           <h2 className="text-3xl md:text-4xl font-bold text-grey-900 mb-4">
             의뢰인 <span className="text-accent-500">후기</span>
           </h2>
@@ -28,70 +25,48 @@ export default function ReviewsSection() {
           </p>
         </motion.div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {displayReviews.map((review, index) => (
+        {/* Reviews 4-column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {REVIEWS.map((review, index) => (
             <motion.div
               key={review.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-grey-50 rounded-lg p-6 relative"
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              {/* Quote Icon */}
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary-100" />
+              <div className="bg-white rounded-xl p-6 border border-grey-100 hover:border-primary-300 transition-colors duration-300 h-full relative">
+                {/* Quote Icon */}
+                <Quote className="absolute top-4 right-4 w-8 h-8 text-primary-50" />
 
-              {/* Stars */}
-              <div className="flex gap-1 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${
-                      i < review.rating
-                        ? 'text-accent-500 fill-accent-500'
-                        : 'text-grey-300'
-                    }`}
-                  />
-                ))}
-              </div>
+                {/* Category Badge */}
+                {review.areaName && (
+                  <Badge className="mb-3 bg-primary-800 text-white border-0 text-xs">
+                    {review.areaName}
+                  </Badge>
+                )}
 
-              {/* Content */}
-              <p className="text-grey-700 leading-relaxed mb-4 line-clamp-4">
-                &ldquo;{review.content}&rdquo;
-              </p>
+                {/* Title (author as title) */}
+                <h3 className="font-bold text-grey-900 mb-2 line-clamp-1">
+                  {review.authorName} 님의 후기
+                </h3>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between pt-4 border-t border-grey-200">
-                <div>
-                  <div className="font-medium text-grey-900">{review.authorName}</div>
+                {/* Content */}
+                <p className="text-sm text-grey-600 leading-relaxed line-clamp-3 mb-4">
+                  &ldquo;{review.content}&rdquo;
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-3 border-t border-grey-100">
                   <div className="text-sm text-grey-500">
-                    {review.areaName} · {review.memberName} 변호사
+                    {review.memberName} 변호사
                   </div>
-                </div>
-                <div className="text-sm text-grey-400">
-                  {review.createdAt}
+                  <div className="text-xs text-grey-400">{review.createdAt}</div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center mt-10"
-        >
-          <Link href="/reviews">
-            <Button variant="outline" className="group">
-              전체 후기 보기
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

@@ -1,20 +1,22 @@
 import HeroSection from '@/components/sections/HeroSection';
-import StatsSection from '@/components/sections/StatsSection';
+import QuickConsultBar from '@/components/sections/QuickConsultBar';
 import MembersSection from '@/components/sections/MembersSection';
-import PracticeSection from '@/components/sections/PracticeSection';
 import CasesSection from '@/components/sections/CasesSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
+import LawyerReviewsSection from '@/components/sections/LawyerReviewsSection';
+import StatsSection from '@/components/sections/StatsSection';
 import ConsultationSection from '@/components/sections/ConsultationSection';
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <StatsSection />
+      <QuickConsultBar />
       <MembersSection />
-      <PracticeSection />
       <CasesSection />
       <ReviewsSection />
+      <LawyerReviewsSection />
+      <StatsSection />
       <ConsultationSection />
     </>
   );

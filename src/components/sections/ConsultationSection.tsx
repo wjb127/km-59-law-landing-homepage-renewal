@@ -66,11 +66,11 @@ export default function ConsultationSection() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              지금 바로 <span className="text-accent-400">무료 상담</span>
-              <br />받아보세요
+              막막하고 점점 <span className="text-accent-400">힘들어지는 상황</span>,
+              <br />혼자 감당하지 마세요
             </h2>
             <p className="text-white/80 text-lg mb-8">
-              혼자 고민하지 마세요. 전문 변호사가 직접 상담해드립니다.
+              지금 바로 전문 변호사에게 상담받으세요.
               <br />
               모든 상담 내용은 철저히 비밀이 보장됩니다.
             </p>

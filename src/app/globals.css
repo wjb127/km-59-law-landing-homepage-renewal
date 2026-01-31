@@ -1,5 +1,9 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 @import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+@import 'swiper/css/effect-fade';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -57,7 +61,7 @@
 
   /* shadcn default vars */
   --radius: 0.5rem;
-  --background: var(--color-grey-50);
+  --background: #ffffff;
   --foreground: var(--color-grey-900);
   --card: #ffffff;
   --card-foreground: var(--color-grey-900);
@@ -112,4 +116,34 @@ body {
 ::selection {
   background: var(--color-primary-200);
   color: var(--color-primary-900);
+}
+
+/* Swiper Overrides */
+.swiper-pagination-bullet {
+  background: var(--color-grey-300) !important;
+  opacity: 1 !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.3s !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--color-primary-800) !important;
+  width: 28px !important;
+  border-radius: 5px !important;
+}
+
+/* Brand serif label */
+.brand-label {
+  font-family: var(--font-serif);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Text shadow utility for dark hero */
+.text-shadow-lg {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-md {
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
