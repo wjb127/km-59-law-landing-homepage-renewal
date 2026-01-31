@@ -1,9 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 @import "tailwindcss";
-@import 'swiper/css';
-@import 'swiper/css/pagination';
-@import 'swiper/css/navigation';
-@import 'swiper/css/effect-fade';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -118,19 +114,6 @@ body {
   color: var(--color-primary-900);
 }
 
-/* Swiper Overrides */
-.swiper-pagination-bullet {
-  background: var(--color-grey-300) !important;
-  opacity: 1 !important;
-  width: 10px !important;
-  height: 10px !important;
-  transition: all 0.3s !important;
-}
-.swiper-pagination-bullet-active {
-  background: var(--color-primary-800) !important;
-  width: 28px !important;
-  border-radius: 5px !important;
-}
 
 /* Brand serif label */
 .brand-label {
